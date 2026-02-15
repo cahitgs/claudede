@@ -597,10 +597,26 @@ footer {
     padding-left: 20px;
 }
 
+/* Welcome Buttons */
+.welcome-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
 /* Results Actions */
 .results-actions {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
     margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.btn-pdf-generating {
+    opacity: 0.6;
+    pointer-events: none;
 }
 
 /* ========== Animations ========== */

@@ -8,12 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Holland Mesleki Tercih Envanteri</h1>
-            <p class="subtitle">Kişilik tipinizi ve size uygun meslekleri keşfedin</p>
+            <h1>🧭 Holland Mesleki Tercih Envanteri</h1>
+            <p class="subtitle">✨ Kişilik tipinizi ve size uygun meslekleri keşfedin</p>
         </div>
     </header>
 
@@ -27,18 +28,21 @@
                         <path d="M12 6v6l4 2"/>
                     </svg>
                 </div>
-                <h2>Mesleki Tercih Testine Hoş Geldiniz</h2>
+                <h2>👋 Mesleki Tercih Testine Hoş Geldiniz</h2>
                 <p>Bu envanter, Holland'ın mesleki kişilik kuramına dayanarak sizin için en uygun meslek alanlarını belirlemenize yardımcı olur.</p>
                 <p>Test <strong>90 sorudan</strong> oluşmaktadır. Her soru için size en uygun yanıtı seçin.</p>
                 <div class="welcome-types">
-                    <span class="type-pill" style="--pill-color: #2E86AB">Gerçekçi</span>
-                    <span class="type-pill" style="--pill-color: #28A745">Araştırıcı</span>
-                    <span class="type-pill" style="--pill-color: #8E44AD">Artistik</span>
-                    <span class="type-pill" style="--pill-color: #E67E22">Sosyal</span>
-                    <span class="type-pill" style="--pill-color: #E74C3C">Girişimci</span>
-                    <span class="type-pill" style="--pill-color: #17A2B8">Geleneksel</span>
+                    <span class="type-pill" style="--pill-color: #2E86AB">🔧 Gerçekçi</span>
+                    <span class="type-pill" style="--pill-color: #28A745">🔬 Araştırıcı</span>
+                    <span class="type-pill" style="--pill-color: #8E44AD">🎨 Artistik</span>
+                    <span class="type-pill" style="--pill-color: #E67E22">🤝 Sosyal</span>
+                    <span class="type-pill" style="--pill-color: #E74C3C">🚀 Girişimci</span>
+                    <span class="type-pill" style="--pill-color: #17A2B8">📊 Geleneksel</span>
                 </div>
-                <button id="btn-start" class="btn btn-primary btn-large">Teste Başla</button>
+                <div class="welcome-buttons">
+                    <button id="btn-start" class="btn btn-primary btn-large">▶️ Teste Başla</button>
+                    <button id="btn-sample" class="btn btn-secondary btn-large">🎲 Örnek Doldur</button>
+                </div>
             </div>
         </section>
 
@@ -57,8 +61,8 @@
             <div id="questions-container"></div>
 
             <div class="navigation">
-                <button id="btn-prev" class="btn btn-secondary" disabled>Önceki</button>
-                <button id="btn-next" class="btn btn-primary">Sonraki</button>
+                <button id="btn-prev" class="btn btn-secondary" disabled>⬅️ Önceki</button>
+                <button id="btn-next" class="btn btn-primary">Sonraki ➡️</button>
             </div>
         </section>
 
@@ -66,14 +70,15 @@
         <section id="results" class="hidden">
             <div id="results-content"></div>
             <div class="results-actions">
-                <button id="btn-restart" class="btn btn-secondary btn-large">Tekrar Başlat</button>
+                <button id="btn-pdf" class="btn btn-primary btn-large">📄 PDF Rapor İndir</button>
+                <button id="btn-restart" class="btn btn-secondary btn-large">🔄 Tekrar Başlat</button>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>Holland Mesleki Tercih Envanteri &mdash; John L. Holland'ın RIASEC Modeli</p>
+            <p>🧭 Holland Mesleki Tercih Envanteri &mdash; John L. Holland'ın RIASEC Modeli</p>
         </div>
     </footer>
 

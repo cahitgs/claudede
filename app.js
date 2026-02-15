@@ -107,6 +107,7 @@ const PERSONALITY_TYPES = {
     gercekci: {
         name: "Gerçekçi",
         nameEn: "Realistic",
+        emoji: "🔧",
         color: "#2E86AB",
         ozellikler: "Sabırlı ve hoşgörülü, pratik, maddeci, erkeksi, antisosyal, uyumlu, içten, doğal, sabırlı, iç görüleri ve başarma güdüleri fazla.",
         etkinlikler: [
@@ -119,6 +120,7 @@ const PERSONALITY_TYPES = {
     arastirici: {
         name: "Araştırıcı",
         nameEn: "Investigative",
+        emoji: "🔬",
         color: "#28A745",
         ozellikler: "Entelektüel, analitik düşünce yapısına sahip, rasyonel, eleştirel, titiz, sabırlı, yöntemci, bağımsız, popüler olmaktan hoşlanmayan.",
         etkinlikler: [
@@ -131,6 +133,7 @@ const PERSONALITY_TYPES = {
     artistik: {
         name: "Artistik",
         nameEn: "Artistic",
+        emoji: "🎨",
         color: "#8E44AD",
         ozellikler: "Heyecan ve coşkuları dengesiz, hayalci, fevri, karmaşık, sezgileri güçlü, bağımsız, duygusal, uyumlu olmayan, duyarlı ve etkileyici.",
         etkinlikler: [
@@ -144,6 +147,7 @@ const PERSONALITY_TYPES = {
     sosyal: {
         name: "Sosyal",
         nameEn: "Social",
+        emoji: "🤝",
         color: "#E67E22",
         ozellikler: "Yardımsever, sorumluluk sahibi, sosyal işbirliğine yatkın, empatik, arkadaş canlısı, içten, sabırlı, nazik, anlayışlı.",
         etkinlikler: [
@@ -156,6 +160,7 @@ const PERSONALITY_TYPES = {
     girisimci: {
         name: "Girişimci",
         nameEn: "Enterprising",
+        emoji: "🚀",
         color: "#E74C3C",
         ozellikler: "Dışa dönük, enerjik, kendine güvenli, atılgan, fevri, ikna yeteneği yüksek, sabırsız, meraklı, maceracı, iyimser, sosyal, konuşkan.",
         etkinlikler: [
@@ -168,6 +173,7 @@ const PERSONALITY_TYPES = {
     geleneksel: {
         name: "Geleneksel",
         nameEn: "Conventional",
+        emoji: "📊",
         color: "#17A2B8",
         ozellikler: "Dikkatli, titiz, itaatkar, tutarlı, esnek olmayan, düzenli, sabırlı, vicdanlı, özdenetimli, hayal gücünden yoksun, dengeli.",
         etkinlikler: [
@@ -220,15 +226,15 @@ function renderQuestions() {
                 <div class="option-group">
                     <label class="option-btn ${answer === 'hoslanir' ? 'selected-like' : ''}" data-value="hoslanir">
                         <input type="radio" name="q${q.id}" value="hoslanir" ${answer === 'hoslanir' ? 'checked' : ''}>
-                        Hoşlanırım
+                        😊 Hoşlanırım
                     </label>
                     <label class="option-btn ${answer === 'farketmez' ? 'selected-neutral' : ''}" data-value="farketmez">
                         <input type="radio" name="q${q.id}" value="farketmez" ${answer === 'farketmez' ? 'checked' : ''}>
-                        Farketmez
+                        😐 Farketmez
                     </label>
                     <label class="option-btn ${answer === 'hoslanmam' ? 'selected-dislike' : ''}" data-value="hoslanmam">
                         <input type="radio" name="q${q.id}" value="hoslanmam" ${answer === 'hoslanmam' ? 'checked' : ''}>
-                        Hoşlanmam
+                        😕 Hoşlanmam
                     </label>
                 </div>
             </div>
@@ -254,10 +260,10 @@ function updateNavigation() {
     const allAnswered = Object.keys(state.answers).length === QUESTIONS.length;
 
     if (isLastPage) {
-        btnNext.textContent = "Sonuçları Gör";
+        btnNext.textContent = "🎯 Sonuçları Gör";
         btnNext.disabled = !allAnswered;
     } else {
-        btnNext.textContent = "Sonraki";
+        btnNext.textContent = "Sonraki ➡️";
         btnNext.disabled = false;
     }
 }
@@ -320,7 +326,7 @@ function renderResults() {
     if (result.isUndefined) {
         html += `
             <div class="result-warning">
-                <strong>Not:</strong> En yüksek puanınız "Farketmez" kategorisinde yer almaktadır.
+                <strong>⚠️ Not:</strong> En yüksek puanınız "Farketmez" kategorisinde yer almaktadır.
                 Bu durum, mesleki kişilik tipinizin henüz tam olarak belirlenmediğini gösterir.
                 Yine de en yüksek "Hoşlanırım" puanına sahip kişilik tipi aşağıda gösterilmiştir.
             </div>
@@ -331,8 +337,8 @@ function renderResults() {
     html += `
         <div class="result-hero">
             <div class="result-hero-banner" style="background: linear-gradient(135deg, ${dominant.color}, ${dominant.color}dd)">
-                <h2>Baskın Kişilik Tipiniz</h2>
-                <div class="type-name">${dominant.name}<span class="type-name-en">${dominant.nameEn}</span></div>
+                <h2>🏆 Baskın Kişilik Tipiniz</h2>
+                <div class="type-name">${dominant.emoji} ${dominant.name}<span class="type-name-en">${dominant.nameEn}</span></div>
                 <span class="score-badge">${scores[result.dominantType].hoslanir} / ${maxPossible} puan</span>
             </div>
             <div class="result-hero-body">
@@ -351,13 +357,13 @@ function renderResults() {
     // Puan grafigi
     html += `
         <div class="score-chart">
-            <h3>Puan Dağılımı (Hoşlanırım)</h3>
+            <h3>📊 Puan Dağılımı (Hoşlanırım)</h3>
             ${sorted.map(([type, counts]) => {
                 const info = PERSONALITY_TYPES[type];
                 const pct = (counts.hoslanir / maxPossible) * 100;
                 return `
                     <div class="chart-row">
-                        <span class="chart-label" style="color: ${info.color}">${info.name}</span>
+                        <span class="chart-label" style="color: ${info.color}">${info.emoji} ${info.name}</span>
                         <div class="chart-bar-track">
                             <div class="chart-bar" style="width: ${pct}%; background: ${info.color}">
                                 ${pct > 20 ? `<span>${counts.hoslanir}</span>` : ""}
@@ -373,7 +379,7 @@ function renderResults() {
     // Karsi tip
     html += `
         <div class="result-opposite">
-            <h3>En Uzak Olduğunuz Kişilik Tipi: ${opposite.name} (${opposite.nameEn})</h3>
+            <h3>🚫 En Uzak Olduğunuz Kişilik Tipi: ${opposite.emoji} ${opposite.name} (${opposite.nameEn})</h3>
             <p>Bu kişilik tipine ait etkinliklerden en az hoşlanıyorsunuz.
             (Hoşlanmam puanı: ${scores[result.oppositeType].hoslanmam} / ${maxPossible})</p>
         </div>
@@ -382,7 +388,7 @@ function renderResults() {
     // Tum tipler
     html += `
         <div class="all-types">
-            <h3>Tüm Kişilik Tipleri</h3>
+            <h3>📋 Tüm Kişilik Tipleri</h3>
             ${Object.entries(PERSONALITY_TYPES).map(([key, info]) => {
                 const s = scores[key];
                 return `
@@ -390,13 +396,13 @@ function renderResults() {
                         <div class="type-card-header" onclick="toggleTypeCard(this)">
                             <div class="type-card-title">
                                 <span class="type-color-dot" style="background: ${info.color}"></span>
-                                <span>${info.name} (${info.nameEn})</span>
+                                <span>${info.emoji} ${info.name} (${info.nameEn})</span>
                             </div>
                             <span class="type-card-arrow">&#9660;</span>
                         </div>
                         <div class="type-card-body">
                             <p style="margin-bottom:8px; font-weight:600; color: ${info.color}">
-                                Hoşlanırım: ${s.hoslanir} &nbsp;|&nbsp; Farketmez: ${s.farketmez} &nbsp;|&nbsp; Hoşlanmam: ${s.hoslanmam}
+                                😊 Hoşlanırım: ${s.hoslanir} &nbsp;|&nbsp; 😐 Farketmez: ${s.farketmez} &nbsp;|&nbsp; 😕 Hoşlanmam: ${s.hoslanmam}
                             </p>
                             <h4>Belirgin Özellikleri</h4>
                             <p>${info.ozellikler}</p>
@@ -512,12 +518,225 @@ function handleRestart() {
     showScreen(welcomeSection);
 }
 
+// ========== ÖRNEK DOLDURMA ==========
+function handleSampleFill() {
+    const options = ["hoslanir", "farketmez", "hoslanmam"];
+
+    // Her kisilik tipine farkli agirliklar vererek rastgele ama anlamli sonuclar olustur
+    // Arastirici tipini baskin yap
+    const typeWeights = {
+        arastirici: [0.7, 0.2, 0.1],
+        artistik:   [0.5, 0.3, 0.2],
+        sosyal:     [0.4, 0.3, 0.3],
+        girisimci:  [0.3, 0.3, 0.4],
+        geleneksel: [0.2, 0.3, 0.5],
+        gercekci:   [0.4, 0.4, 0.2]
+    };
+
+    // Her sorunun hangi tipe ait oldugunu bul
+    const questionTypeMap = {};
+    for (const [type, ids] of Object.entries(SCORING_MAP)) {
+        for (const id of ids) {
+            questionTypeMap[id] = type;
+        }
+    }
+
+    QUESTIONS.forEach(q => {
+        const type = questionTypeMap[q.id];
+        const weights = typeWeights[type];
+        const rand = Math.random();
+
+        if (rand < weights[0]) state.answers[q.id] = "hoslanir";
+        else if (rand < weights[0] + weights[1]) state.answers[q.id] = "farketmez";
+        else state.answers[q.id] = "hoslanmam";
+    });
+
+    showScreen(questionnaireSection);
+    state.currentPage = totalPages - 1;
+    renderQuestions();
+}
+
+// ========== PDF RAPOR ==========
+function handlePdfDownload() {
+    const btnPdf = document.getElementById("btn-pdf");
+    const originalText = btnPdf.textContent;
+    btnPdf.textContent = "⏳ PDF Hazırlanıyor...";
+    btnPdf.classList.add("btn-pdf-generating");
+
+    const scores = calculateScores();
+    const result = determineResult(scores);
+    const dominant = PERSONALITY_TYPES[result.dominantType];
+    const opposite = PERSONALITY_TYPES[result.oppositeType];
+    const maxPossible = 15;
+
+    const sorted = Object.entries(scores)
+        .sort((a, b) => b[1].hoslanir - a[1].hoslanir);
+
+    // PDF icin ozel HTML olustur
+    const pdfContainer = document.createElement("div");
+    pdfContainer.style.cssText = "padding: 32px; font-family: 'Inter', Arial, sans-serif; color: #2D3436; max-width: 700px;";
+
+    let pdfHtml = `
+        <div style="text-align: center; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 3px solid ${dominant.color};">
+            <h1 style="font-size: 22px; margin: 0 0 4px; color: #2D3436;">🧭 Holland Mesleki Tercih Envanteri</h1>
+            <p style="font-size: 13px; color: #636E72; margin: 0;">📅 Rapor Tarihi: ${new Date().toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        </div>
+    `;
+
+    // Uyari
+    if (result.isUndefined) {
+        pdfHtml += `
+            <div style="background: #FFF3CD; border: 1px solid #FFE69C; border-radius: 8px; padding: 14px 18px; margin-bottom: 20px; font-size: 13px; color: #856404;">
+                ⚠️ <strong>Not:</strong> En yüksek puanınız "Farketmez" kategorisinde yer almaktadır.
+                Bu durum, mesleki kişilik tipinizin henüz tam olarak belirlenmediğini gösterir.
+            </div>
+        `;
+    }
+
+    // Baskin tip
+    pdfHtml += `
+        <div style="background: ${dominant.color}; color: white; border-radius: 10px; padding: 24px; margin-bottom: 20px;">
+            <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; margin: 0 0 6px;">🏆 Baskın Kişilik Tipiniz</p>
+            <h2 style="font-size: 26px; margin: 0;">${dominant.emoji} ${dominant.name} <span style="font-size: 14px; font-weight: 400; opacity: 0.8;">${dominant.nameEn}</span></h2>
+            <p style="margin: 8px 0 0; font-size: 14px; opacity: 0.9;">Puan: ${scores[result.dominantType].hoslanir} / ${maxPossible}</p>
+        </div>
+    `;
+
+    // Ozellikler
+    pdfHtml += `
+        <div style="background: #f8f9fa; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+            <h3 style="font-size: 14px; color: ${dominant.color}; margin: 0 0 8px;">✨ Belirgin Özellikleri</h3>
+            <p style="font-size: 13px; margin: 0 0 16px; line-height: 1.6;">${dominant.ozellikler}</p>
+            <h3 style="font-size: 14px; color: ${dominant.color}; margin: 0 0 8px;">📌 Baskın Talepler / Etkinlikler</h3>
+            <ul style="font-size: 13px; margin: 0 0 16px; padding-left: 20px; line-height: 1.8;">
+                ${dominant.etkinlikler.map(e => `<li>${e}</li>`).join("")}
+            </ul>
+            <h3 style="font-size: 14px; color: ${dominant.color}; margin: 0 0 8px;">💼 Tipik Meslekler</h3>
+            <p style="font-size: 13px; margin: 0; line-height: 1.6;">${dominant.meslekler}</p>
+        </div>
+    `;
+
+    // Puan dagilimi tablosu
+    pdfHtml += `
+        <div style="margin-bottom: 20px;">
+            <h3 style="font-size: 15px; margin: 0 0 14px;">📊 Puan Dağılımı</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                <thead>
+                    <tr style="background: #f1f3f5;">
+                        <th style="padding: 10px 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Kişilik Tipi</th>
+                        <th style="padding: 10px 12px; text-align: center; border-bottom: 2px solid #dee2e6;">😊 Hoşlanırım</th>
+                        <th style="padding: 10px 12px; text-align: center; border-bottom: 2px solid #dee2e6;">😐 Farketmez</th>
+                        <th style="padding: 10px 12px; text-align: center; border-bottom: 2px solid #dee2e6;">😕 Hoşlanmam</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${sorted.map(([type, counts], i) => {
+                        const info = PERSONALITY_TYPES[type];
+                        const isTop = i === 0;
+                        return `
+                            <tr style="background: ${isTop ? info.color + '15' : 'white'};">
+                                <td style="padding: 10px 12px; border-bottom: 1px solid #eee; font-weight: ${isTop ? '700' : '500'}; color: ${info.color};">
+                                    ${info.emoji} ${info.name}
+                                </td>
+                                <td style="padding: 10px 12px; border-bottom: 1px solid #eee; text-align: center; font-weight: 700; color: #28A745;">${counts.hoslanir}</td>
+                                <td style="padding: 10px 12px; border-bottom: 1px solid #eee; text-align: center; color: #6C757D;">${counts.farketmez}</td>
+                                <td style="padding: 10px 12px; border-bottom: 1px solid #eee; text-align: center; color: #DC3545;">${counts.hoslanmam}</td>
+                            </tr>
+                        `;
+                    }).join("")}
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    // Gorsel cubuk grafik
+    pdfHtml += `
+        <div style="margin-bottom: 20px;">
+            ${sorted.map(([type, counts]) => {
+                const info = PERSONALITY_TYPES[type];
+                const pct = (counts.hoslanir / maxPossible) * 100;
+                return `
+                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                        <span style="width: 120px; font-size: 12px; font-weight: 600; color: ${info.color};">${info.emoji} ${info.name}</span>
+                        <div style="flex: 1; height: 22px; background: #f1f3f5; border-radius: 4px; overflow: hidden; margin: 0 10px;">
+                            <div style="width: ${pct}%; height: 100%; background: ${info.color}; border-radius: 4px;"></div>
+                        </div>
+                        <span style="font-size: 12px; font-weight: 700; width: 40px; text-align: right;">${counts.hoslanir}/${maxPossible}</span>
+                    </div>
+                `;
+            }).join("")}
+        </div>
+    `;
+
+    // Karsi tip
+    pdfHtml += `
+        <div style="background: #fff5f5; border-left: 4px solid #DC3545; border-radius: 8px; padding: 16px 20px; margin-bottom: 20px;">
+            <h3 style="font-size: 14px; color: #DC3545; margin: 0 0 6px;">🚫 En Uzak Olduğunuz Kişilik Tipi: ${opposite.emoji} ${opposite.name}</h3>
+            <p style="font-size: 13px; color: #636E72; margin: 0;">Hoşlanmam puanı: ${scores[result.oppositeType].hoslanmam} / ${maxPossible}</p>
+        </div>
+    `;
+
+    // Tum tipler ozet
+    pdfHtml += `
+        <div style="margin-top: 24px; page-break-before: always;">
+            <h3 style="font-size: 15px; margin: 0 0 14px;">📋 Tüm Kişilik Tipleri</h3>
+            ${Object.entries(PERSONALITY_TYPES).map(([key, info]) => {
+                const s = scores[key];
+                return `
+                    <div style="border: 1px solid #eee; border-radius: 8px; padding: 16px; margin-bottom: 12px; border-left: 4px solid ${info.color};">
+                        <h4 style="font-size: 14px; color: ${info.color}; margin: 0 0 6px;">${info.emoji} ${info.name} (${info.nameEn})</h4>
+                        <p style="font-size: 12px; color: ${info.color}; margin: 0 0 8px; font-weight: 600;">
+                            😊 ${s.hoslanir} &nbsp;|&nbsp; 😐 ${s.farketmez} &nbsp;|&nbsp; 😕 ${s.hoslanmam}
+                        </p>
+                        <p style="font-size: 12px; margin: 0 0 4px; line-height: 1.5;"><strong>Özellikler:</strong> ${info.ozellikler}</p>
+                        <p style="font-size: 12px; margin: 0; line-height: 1.5;"><strong>Meslekler:</strong> ${info.meslekler}</p>
+                    </div>
+                `;
+            }).join("")}
+        </div>
+    `;
+
+    // Footer
+    pdfHtml += `
+        <div style="text-align: center; margin-top: 32px; padding-top: 16px; border-top: 1px solid #eee; font-size: 11px; color: #aaa;">
+            🧭 Holland Mesleki Tercih Envanteri — John L. Holland'ın RIASEC Modeli
+        </div>
+    `;
+
+    pdfContainer.innerHTML = pdfHtml;
+    document.body.appendChild(pdfContainer);
+
+    const opt = {
+        margin: [10, 10, 10, 10],
+        filename: `holland-mesleki-tercih-raporu-${new Date().toISOString().slice(0, 10)}.pdf`,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+        pagebreak: { mode: ["avoid-all", "css", "legacy"] }
+    };
+
+    html2pdf().set(opt).from(pdfContainer).save().then(() => {
+        document.body.removeChild(pdfContainer);
+        btnPdf.textContent = originalText;
+        btnPdf.classList.remove("btn-pdf-generating");
+    }).catch(() => {
+        document.body.removeChild(pdfContainer);
+        btnPdf.textContent = originalText;
+        btnPdf.classList.remove("btn-pdf-generating");
+    });
+}
+
 // ========== EVENT LISTENER'LAR ==========
 document.addEventListener("DOMContentLoaded", () => {
+    const btnSample = document.getElementById("btn-sample");
+    const btnPdf = document.getElementById("btn-pdf");
+
     btnStart.addEventListener("click", handleStart);
     btnPrev.addEventListener("click", handlePrev);
     btnNext.addEventListener("click", handleNext);
     btnRestart.addEventListener("click", handleRestart);
+    btnSample.addEventListener("click", handleSampleFill);
+    btnPdf.addEventListener("click", handlePdfDownload);
 
     // Event delegation - soru secenekleri
     questionsContainer.addEventListener("click", (e) => {
