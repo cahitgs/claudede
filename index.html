@@ -9,12 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <header>
         <div class="container">
             <h1>🧭 Holland Mesleki Tercih Envanteri</h1>
             <p class="subtitle">✨ Kişilik tipinizi ve size uygun meslekleri keşfedin</p>
+        </div>
+        <div class="header-controls">
+            <button class="header-btn" id="btn-theme" title="Tema Değiştir">🌙</button>
+            <button class="header-btn" id="btn-sound" title="Ses Aç/Kapat">🔊</button>
         </div>
     </header>
 
@@ -39,9 +44,16 @@
                     <span class="type-pill" style="--pill-color: #E74C3C">🚀 Girişimci</span>
                     <span class="type-pill" style="--pill-color: #17A2B8">📊 Geleneksel</span>
                 </div>
+                <div class="welcome-form">
+                    <input type="text" id="input-name" placeholder="✏️ Adınız (opsiyonel)" maxlength="50">
+                    <input type="text" id="input-class" placeholder="🏫 Sınıfınız (opsiyonel)" maxlength="30">
+                </div>
                 <div class="welcome-buttons">
                     <button id="btn-start" class="btn btn-primary btn-large">▶️ Teste Başla</button>
                     <button id="btn-sample" class="btn btn-secondary btn-large">🎲 Örnek Doldur</button>
+                </div>
+                <div class="welcome-secondary-buttons">
+                    <button id="btn-history" class="btn btn-secondary btn-sm">📜 Geçmiş Sonuçlar</button>
                 </div>
             </div>
         </section>
@@ -51,7 +63,10 @@
             <div class="progress-container">
                 <div class="progress-info">
                     <span id="progress-text">0 / 90 soru tamamlandı</span>
-                    <span id="page-text">Sayfa 1 / 9</span>
+                    <div class="progress-right">
+                        <span id="timer-text" class="timer">⏱️ 00:00</span>
+                        <span id="page-text">Sayfa 1 / 9</span>
+                    </div>
                 </div>
                 <div class="progress-track">
                     <div class="progress-bar" id="progress-bar"></div>
@@ -81,6 +96,17 @@
             <p>🧭 Holland Mesleki Tercih Envanteri &mdash; John L. Holland'ın RIASEC Modeli</p>
         </div>
     </footer>
+
+    <!-- History Modal -->
+    <div id="history-modal" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>📜 Geçmiş Sonuçlar</h3>
+                <button class="modal-close" id="btn-close-history">&times;</button>
+            </div>
+            <div class="modal-body" id="history-list"></div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
