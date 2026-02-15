@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holland Mesleki Tercih Envanteri</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Holland Mesleki Tercih Envanteri</h1>
+            <p class="subtitle">Kişilik tipinizi ve size uygun meslekleri keşfedin</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Karsilama Ekrani -->
+        <section id="welcome">
+            <div class="welcome-card">
+                <div class="welcome-icon">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <h2>Mesleki Tercih Testine Hoş Geldiniz</h2>
+                <p>Bu envanter, Holland'ın mesleki kişilik kuramına dayanarak sizin için en uygun meslek alanlarını belirlemenize yardımcı olur.</p>
+                <p>Test <strong>90 sorudan</strong> oluşmaktadır. Her soru için size en uygun yanıtı seçin.</p>
+                <div class="welcome-types">
+                    <span class="type-pill" style="--pill-color: #2E86AB">Gerçekçi</span>
+                    <span class="type-pill" style="--pill-color: #28A745">Araştırıcı</span>
+                    <span class="type-pill" style="--pill-color: #8E44AD">Artistik</span>
+                    <span class="type-pill" style="--pill-color: #E67E22">Sosyal</span>
+                    <span class="type-pill" style="--pill-color: #E74C3C">Girişimci</span>
+                    <span class="type-pill" style="--pill-color: #17A2B8">Geleneksel</span>
+                </div>
+                <button id="btn-start" class="btn btn-primary btn-large">Teste Başla</button>
+            </div>
+        </section>
+
+        <!-- Anket Ekrani -->
+        <section id="questionnaire" class="hidden">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span id="progress-text">0 / 90 soru tamamlandı</span>
+                    <span id="page-text">Sayfa 1 / 9</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+            </div>
+
+            <div id="questions-container"></div>
+
+            <div class="navigation">
+                <button id="btn-prev" class="btn btn-secondary" disabled>Önceki</button>
+                <button id="btn-next" class="btn btn-primary">Sonraki</button>
+            </div>
+        </section>
+
+        <!-- Sonuc Ekrani -->
+        <section id="results" class="hidden">
+            <div id="results-content"></div>
+            <div class="results-actions">
+                <button id="btn-restart" class="btn btn-secondary btn-large">Tekrar Başlat</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Holland Mesleki Tercih Envanteri &mdash; John L. Holland'ın RIASEC Modeli</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
